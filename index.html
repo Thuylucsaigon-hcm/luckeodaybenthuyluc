@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tool - Tính lực ben thủy lực</title>
+  <style>
+    :root{--accent:#0073e6;--bg:#fff;--text:#222}
+    body{font-family:Arial,Helvetica,sans-serif;background:#fafafa;color:var(--text);padding:18px;margin:0}
+    .wrap{max-width:720px;margin:0 auto}
+    .calc-card{max-width:520px;margin:10px auto 24px;padding:18px;border:1px solid #e0e0e0;border-radius:10px;background:var(--bg)}
+    .calc-card h1{font-size:20px;margin:0 0 12px;color:var(--accent);text-align:center}
+    label{display:block;margin:10px 0 6px;font-weight:600}
+    .fld{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;font-size:16px;box-sizing:border-box}
+    button.calc-btn{display:block;width:100%;padding:12px;background:var(--accent);color:#fff;border:0;border-radius:8px;font-size:16px;cursor:pointer}
+    button.calc-btn:active{transform:translateY(1px)}
+    #result{margin-top:14px;font-weight:700;font-size:15px}
+    .note{color:#666;font-size:13px;margin-top:8px}
+    @media (max-width:480px){
+      .calc-card{padding:14px}
+      .fld, button.calc-btn{font-size:16px;padding:12px}
+    }
+    /* prevent Safari automatic zoom on inputs */
+    input, button { -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-font-smoothing:antialiased; }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="calc-card" role="region" aria-labelledby="titleCalc">
+      <h1 id="titleCalc">Tính lực xi lanh thủy lực</h1>
+
+      <label for="piston">Đường kính piston (mm):</label>
+      <input id="piston" class="fld" type="tel" inputmode="decimal" placeholder="Ví dụ: 50">
+
+      <label for="rod">Đường kính cần (mm):</label>
+      <input id="rod" class="fld" type="tel" inputmode="decimal" placeholder="Ví dụ: 30">
+
+      <label for="pressure">Áp suất làm việc (bar):</label>
+      <input id="pressure" class="fld" type="tel" inputmode="decimal" placeholder="Ví dụ: 150">
+
+      <button id="btnCalc" class="calc-btn" type="button">Tính lực</button>
+
+      <div id="result" aria-live="polite"></div>
+      <div class="note">Ghi chú: Nhập số (hỗ trợ dấu chấm hoặc dấu phẩy như 150.5 hoặc 150,5)</div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    'use strict';
+
+    // Convert user text to number (support comma as decimal)
+    function toNumber(s){
+      if (!s && s !== 0) return NaN;
+      s = String(s).trim();
+      s = s.replace(',', '.'); // support comma
+      // remove any non-digit except dot and minus
+      s = s.replace(/[^\d.\-]/g,'');
+      return parseFloat(s);
+    }
+
+    function formatKg(n){
+      // round to nearest kg integer, with thousands separator
+      return Math.round(n).toLocaleString();
+    }
+
+    function onCalc(){
+      var D = toNumber(document.getElementById('piston').value);
+      var d = toNumber(document.getElementById('rod').value);
+      var Pbar = toNumber(document.getElementById('pressure').value);
+
+      var out = document.getElementById('result');
+
+      if (!isFinite(D) || !isFinite(d) || !isFinite(Pbar) || D <= 0 || d < 0 || Pbar <= 0){
+        out.innerHTML = '⚠️ Vui lòng nhập giá trị hợp lệ: piston (>0), cần (>=0), áp suất (>0).';
+        return;
+      }
+      if (d >= D){
+        out.innerHTML = '⚠️ Lỗi: Đường kính cần phải nhỏ hơn đường kính piston.';
+        return;
+      }
+
+      var P = Pbar / 10; // bar -> N/mm²
+      var A_push = Math.PI * D * D / 4;
+      var A_pull = Math.PI * (D * D - d * d) / 4;
+
+      var F_push_N = A_push * P;
+      var F_pull_N = A_pull * P;
+
+      var F_push_kg = F_push_N / 9.81;
+      var F_pull_kg = F_pull_N / 9.81;
+
+      out.innerHTML =
+        '👉 Lực đẩy: ' + formatKg(F_push_kg) + ' kg (' + (F_push_kg/1000).toFixed(2) + ' tấn)<br>' +
+        '👉 Lực kéo: ' + formatKg(F_pull_kg) + ' kg (' + (F_pull_kg/1000).toFixed(2) + ' tấn)';
+    }
+
+    document.getElementById('btnCalc').addEventListener('click', onCalc);
+
+    // optional: allow Enter key to trigger calc when focus in inputs
+    var inputs = document.querySelectorAll('#piston,#rod,#pressure');
+    inputs.forEach(function(inp){
+      inp.addEventListener('keydown', function(e){
+        if (e.key === 'Enter') { onCalc(); e.preventDefault(); }
+      });
+    });
+
+    // small UX: prevent zoom on focus for mobile Safari (font-size >=16 already)
+  })();
+  </script>
+</body>
+</html>
