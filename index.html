@@ -1,113 +1,94 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tool - Tính lực ben thủy lực</title>
-  <style>
-    :root{--accent:#0073e6;--bg:#fff;--text:#222}
-    body{font-family:Arial,Helvetica,sans-serif;background:#fafafa;color:var(--text);padding:18px;margin:0}
-    .wrap{max-width:720px;margin:0 auto}
-    .calc-card{max-width:520px;margin:10px auto 24px;padding:18px;border:1px solid #e0e0e0;border-radius:10px;background:var(--bg)}
-    .calc-card h1{font-size:20px;margin:0 0 12px;color:var(--accent);text-align:center}
-    label{display:block;margin:10px 0 6px;font-weight:600}
-    .fld{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;font-size:16px;box-sizing:border-box}
-    button.calc-btn{display:block;width:100%;padding:12px;background:var(--accent);color:#fff;border:0;border-radius:8px;font-size:16px;cursor:pointer}
-    button.calc-btn:active{transform:translateY(1px)}
-    #result{margin-top:14px;font-weight:700;font-size:15px}
-    .note{color:#666;font-size:13px;margin-top:8px}
-    @media (max-width:480px){
-      .calc-card{padding:14px}
-      .fld, button.calc-btn{font-size:16px;padding:12px}
-    }
-    /* prevent Safari automatic zoom on inputs */
-    input, button { -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-font-smoothing:antialiased; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thông số lực kéo đẩy của ben thủy lực | Thủy Lực Sài Gòn</title>
+  <meta name="description" content="Công cụ tính toán và thông số lực kéo đẩy của ben thủy lực. Tư vấn bởi Công Ty TNHH Máy Và Thiết Bị Thủy Lực Sài Gòn - chuyên chế tạo, sửa chữa, phục hồi ben thủy lực.">
+  <meta name="keywords" content="thông số ben thủy lực, lực kéo đẩy ben thủy lực, tính toán ben thủy lực, xi lanh thủy lực, Thủy Lực Sài Gòn">
+  <meta name="robots" content="index, follow">
 
+  <!-- Open Graph -->
+  <meta property="og:title" content="Thông số lực kéo đẩy của ben thủy lực | Thủy Lực Sài Gòn">
+  <meta property="og:description" content="Công cụ tính toán lực kéo đẩy ben thủy lực online. Giải pháp thủy lực chuyên nghiệp bởi Công Ty Thủy Lực Sài Gòn.">
+  <meta property="og:url" content="https://thuylucsaigon-hcm.github.io/luckeodaybenthuyluc/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://thuylucsaigon.com/wp-content/uploads/2024/07/ben-thuy-luc.jpg">
+
+  <!-- Styles -->
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background: #f9f9f9; }
+    header { background: #004aad; color: #fff; text-align: center; padding: 20px; }
+    header h1 { margin: 0; font-size: 1.8rem; }
+    section { max-width: 900px; margin: auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-top: 20px; }
+    h2 { color: #004aad; margin-top: 20px; }
+    .cta { background: #004aad; color: #fff; padding: 12px 20px; display: inline-block; text-decoration: none; border-radius: 6px; margin-top: 20px; }
+    footer { text-align: center; font-size: 14px; padding: 20px; background: #222; color: #aaa; margin-top: 30px; }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="calc-card" role="region" aria-labelledby="titleCalc">
-      <h1 id="titleCalc">Tính lực xi lanh thủy lực</h1>
+  <header>
+    <h1>Thông số lực kéo đẩy của ben thủy lực</h1>
+    <p>Công Ty TNHH Máy Và Thiết Bị Thủy Lực Sài Gòn</p>
+  </header>
 
-      <label for="piston">Đường kính piston (mm):</label>
-      <input id="piston" class="fld" type="tel" inputmode="decimal" placeholder="Ví dụ: 50">
+  <section>
+    <h2>Giới thiệu</h2>
+    <p>Ben thủy lực (hay còn gọi là xi lanh thủy lực) là thiết bị quan trọng trong hệ thống truyền động thủy lực. Việc nắm rõ <strong>thông số lực kéo đẩy của ben thủy lực</strong> giúp kỹ sư và doanh nghiệp:</p>
+    <ul>
+      <li>Tính toán công suất và thiết kế hệ thống thủy lực chính xác.</li>
+      <li>Lựa chọn xi lanh phù hợp với tải trọng thực tế.</li>
+      <li>Đảm bảo an toàn, tiết kiệm chi phí và tăng tuổi thọ thiết bị.</li>
+    </ul>
 
-      <label for="rod">Đường kính cần (mm):</label>
-      <input id="rod" class="fld" type="tel" inputmode="decimal" placeholder="Ví dụ: 30">
+    <h2>Công thức tính lực kéo đẩy</h2>
+    <p>
+      Lực đẩy (F<sub>đẩy</sub>) và lực kéo (F<sub>kéo</sub>) được tính theo công thức:
+    </p>
+    <pre>
+F = P × A
 
-      <label for="pressure">Áp suất làm việc (bar):</label>
-      <input id="pressure" class="fld" type="tel" inputmode="decimal" placeholder="Ví dụ: 150">
+Trong đó:
+- P: Áp suất (N/mm² hoặc bar, 1 bar = 0.1 N/mm²)
+- A: Diện tích piston (mm²)
+    </pre>
+    <p>
+      Ví dụ: Với piston đường kính 50mm, cần 30mm, áp suất 150 bar:<br>
+      Lực đẩy ≈ 3002 kg (3.0 tấn)<br>
+      Lực kéo ≈ 1921 kg (1.92 tấn)
+    </p>
 
-      <button id="btnCalc" class="calc-btn" type="button">Tính lực</button>
+    <h2>Ứng dụng trong thực tế</h2>
+    <ul>
+      <li>Thiết kế máy ép thủy lực, máy nâng hạ.</li>
+      <li>Sử dụng trong xe ben, máy công trình.</li>
+      <li>Ứng dụng trong các dây chuyền sản xuất công nghiệp.</li>
+    </ul>
 
-      <div id="result" aria-live="polite"></div>
-      <div class="note">Ghi chú: Nhập số (hỗ trợ dấu chấm hoặc dấu phẩy như 150.5 hoặc 150,5)</div>
-    </div>
-  </div>
+    <a class="cta" href="https://thuylucsaigon.com/lien-he/">Liên hệ tư vấn kỹ thuật</a>
+  </section>
 
-  <script>
-  (function(){
-    'use strict';
+  <footer>
+    <p>&copy; 2025 Công Ty TNHH Máy Và Thiết Bị Thủy Lực Sài Gòn | <a href="https://thuylucsaigon.com" style="color:#fff;">Website chính thức</a></p>
+  </footer>
 
-    // Convert user text to number (support comma as decimal)
-    function toNumber(s){
-      if (!s && s !== 0) return NaN;
-      s = String(s).trim();
-      s = s.replace(',', '.'); // support comma
-      // remove any non-digit except dot and minus
-      s = s.replace(/[^\d.\-]/g,'');
-      return parseFloat(s);
-    }
-
-    function formatKg(n){
-      // round to nearest kg integer, with thousands separator
-      return Math.round(n).toLocaleString();
-    }
-
-    function onCalc(){
-      var D = toNumber(document.getElementById('piston').value);
-      var d = toNumber(document.getElementById('rod').value);
-      var Pbar = toNumber(document.getElementById('pressure').value);
-
-      var out = document.getElementById('result');
-
-      if (!isFinite(D) || !isFinite(d) || !isFinite(Pbar) || D <= 0 || d < 0 || Pbar <= 0){
-        out.innerHTML = '⚠️ Vui lòng nhập giá trị hợp lệ: piston (>0), cần (>=0), áp suất (>0).';
-        return;
+  <!-- Schema SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Thông số lực kéo đẩy của ben thủy lực",
+    "description": "Công cụ tính toán và thông số lực kéo đẩy của ben thủy lực. Tư vấn bởi Công Ty Thủy Lực Sài Gòn.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Công Ty TNHH Máy Và Thiết Bị Thủy Lực Sài Gòn",
+      "url": "https://thuylucsaigon.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://thuylucsaigon.com/wp-content/uploads/2024/07/logo-thuy-luc-sai-gon.png"
       }
-      if (d >= D){
-        out.innerHTML = '⚠️ Lỗi: Đường kính cần phải nhỏ hơn đường kính piston.';
-        return;
-      }
-
-      var P = Pbar / 10; // bar -> N/mm²
-      var A_push = Math.PI * D * D / 4;
-      var A_pull = Math.PI * (D * D - d * d) / 4;
-
-      var F_push_N = A_push * P;
-      var F_pull_N = A_pull * P;
-
-      var F_push_kg = F_push_N / 9.81;
-      var F_pull_kg = F_pull_N / 9.81;
-
-      out.innerHTML =
-        '👉 Lực đẩy: ' + formatKg(F_push_kg) + ' kg (' + (F_push_kg/1000).toFixed(2) + ' tấn)<br>' +
-        '👉 Lực kéo: ' + formatKg(F_pull_kg) + ' kg (' + (F_pull_kg/1000).toFixed(2) + ' tấn)';
     }
-
-    document.getElementById('btnCalc').addEventListener('click', onCalc);
-
-    // optional: allow Enter key to trigger calc when focus in inputs
-    var inputs = document.querySelectorAll('#piston,#rod,#pressure');
-    inputs.forEach(function(inp){
-      inp.addEventListener('keydown', function(e){
-        if (e.key === 'Enter') { onCalc(); e.preventDefault(); }
-      });
-    });
-
-    // small UX: prevent zoom on focus for mobile Safari (font-size >=16 already)
-  })();
+  }
   </script>
 </body>
 </html>
