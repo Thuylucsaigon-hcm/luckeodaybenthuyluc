@@ -1,145 +1,190 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thông số lực kéo đẩy của ben thủy lực | Thủy Lực Sài Gòn</title>
-  <meta name="description" content="Công cụ tính toán và thông số lực kéo đẩy của ben thủy lực. Tư vấn bởi Công Ty TNHH Máy Và Thiết Bị Thủy Lực Sài Gòn - chuyên chế tạo, sửa chữa, phục hồi ben thủy lực.">
-  <meta name="keywords" content="thông số ben thủy lực, lực kéo đẩy ben thủy lực, tính toán ben thủy lực, xi lanh thủy lực, Thủy Lực Sài Gòn">
-  <meta name="robots" content="index, follow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thông số lực kéo đẩy xi lanh thủy lực | Thủy Lực Sài Gòn</title>
+<meta name="description" content="Tính toán lực kéo đẩy xi lanh thủy lực trực tuyến. Dịch vụ chế tạo, sửa chữa, phục hồi ben thủy lực chuyên nghiệp tại TP.HCM và các tỉnh lân cận bởi Thủy Lực Sài Gòn.">
+<meta name="keywords" content="ben thủy lực, xi lanh thủy lực, lực kéo ben thủy lực, lực đẩy ben thủy lực, tính toán xi lanh thủy lực, chế tạo xi lanh, sửa chữa xi lanh thủy lực, Thủy Lực Sài Gòn">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Thông số lực kéo đẩy của ben thủy lực | Thủy Lực Sài Gòn">
-  <meta property="og:description" content="Công cụ tính toán lực kéo đẩy ben thủy lực online. Giải pháp thủy lực chuyên nghiệp bởi Công Ty Thủy Lực Sài Gòn.">
-  <meta property="og:url" content="https://thuylucsaigon-hcm.github.io/luckeodaybenthuyluc/">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://thuylucsaigon.com/wp-content/uploads/2024/07/ben-thuy-luc.jpg">
+<!-- Styles -->
+<style>
+body { font-family: Arial, sans-serif; margin:0; padding:20px; line-height:1.6; background:#f9f9f9; color:#333; }
+header { background:#004aad; color:#fff; text-align:center; padding:20px; border-radius:8px; }
+header h1 { margin:0; font-size:1.8rem; }
+section { max-width:900px; margin:auto; padding:20px; background:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); margin-top:20px; }
+h2 { color:#004aad; margin-top:20px; }
+label { font-weight:bold; display:block; margin-top:10px; }
+input { width:100%; padding:10px; margin:8px 0 15px 0; border:1px solid #ccc; border-radius:6px; font-size:1rem; }
+button { background:#004aad; color:#fff; padding:10px 20px; border:none; border-radius:6px; cursor:pointer; font-size:1rem; }
+button:hover { background:#00347a; }
+.result { margin-top:15px; padding:15px; background:#e9f5ff; border-left:5px solid #004aad; border-radius:6px; }
+.chart-container { margin-top:30px; }
+footer { text-align:center; font-size:14px; padding:20px; background:#222; color:#aaa; margin-top:30px; border-radius:8px; }
+a.cta { background:#004aad; color:#fff; padding:12px 20px; display:inline-block; text-decoration:none; border-radius:6px; margin-top:20px; }
 
-  <!-- Styles -->
-  <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background: #f9f9f9; }
-    header { background: #004aad; color: #fff; text-align: center; padding: 20px; border-radius: 8px; }
-    header h1 { margin: 0; font-size: 1.8rem; }
-    section { max-width: 900px; margin: auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-top: 20px; }
-    h2 { color: #004aad; margin-top: 20px; }
-    .cta { background: #004aad; color: #fff; padding: 12px 20px; display: inline-block; text-decoration: none; border-radius: 6px; margin-top: 20px; }
-    footer { text-align: center; font-size: 14px; padding: 20px; background: #222; color: #aaa; margin-top: 30px; border-radius: 8px; }
-    input { width: 100%; padding: 10px; margin: 8px 0 15px 0; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; }
-    button { background: #004aad; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; }
-    button:hover { background: #00347a; }
-    .result { margin-top: 15px; padding: 15px; background: #e9f5ff; border-left: 5px solid #004aad; border-radius: 6px; }
-    @media (max-width: 600px) {
-      body { padding: 10px; }
-      h1 { font-size: 1.4rem; }
-      button { width: 100%; }
-    }
-  </style>
+/* Tooltip */
+.tooltip { position: relative; display: inline-block; cursor: pointer; color: #004aad; font-weight: bold; }
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 250px;
+  background-color: #004aad;
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -125px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size:0.9rem;
+}
+.tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
 
-  <!-- Schema SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Thông số lực kéo đẩy của ben thủy lực",
-    "description": "Công cụ tính toán và thông số lực kéo đẩy của ben thủy lực. Tư vấn bởi Công Ty Thủy Lực Sài Gòn.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Công Ty TNHH Máy Và Thiết Bị Thủy Lực Sài Gòn",
-      "url": "https://thuylucsaigon.com",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://thuylucsaigon.com/wp-content/uploads/2024/07/logo-thuy-luc-sai-gon.png"
-      }
-    }
-  }
-  </script>
+/* Mini diagram */
+.tooltip img { max-width:100%; margin-top:5px; border:1px solid #fff; border-radius:4px; }
+
+/* Responsive */
+@media(max-width:600px){ body{padding:10px;} h1{font-size:1.4rem;} button{width:100%;} }
+</style>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
 <header>
-  <h1>Thông số lực kéo đẩy của ben thủy lực</h1>
-  <p>Công Ty TNHH Máy Và Thiết Bị Thủy Lực Sài Gòn</p>
+<h1>Thông số lực kéo đẩy xi lanh thủy lực</h1>
+<p>Công Ty TNHH Máy Và Thiết Bị Thủy Lực Sài Gòn</p>
 </header>
 
 <section>
-  <h2>Giới thiệu</h2>
-  <p>Ben thủy lực (xi lanh thủy lực) là thiết bị quan trọng trong hệ thống truyền động thủy lực. Nắm rõ <strong>thông số lực kéo đẩy</strong> giúp:</p>
-  <ul>
-    <li>Tính toán công suất và thiết kế hệ thống chính xác.</li>
-    <li>Lựa chọn xi lanh phù hợp với tải trọng thực tế.</li>
-    <li>Đảm bảo an toàn, tiết kiệm chi phí và tăng tuổi thọ thiết bị.</li>
-  </ul>
+<h2>Giới thiệu</h2>
+<p>Ben thủy lực là thiết bị quan trọng trong hệ thống truyền động. Hiểu rõ <strong>lực kéo và lực đẩy</strong> giúp thiết kế và vận hành chính xác, tiết kiệm chi phí, tăng tuổi thọ thiết bị.</p>
 
-  <h2>Công cụ tính lực kéo đẩy</h2>
-  <label for="piston">Đường kính piston (mm):</label>
-  <input type="number" id="piston" placeholder="Ví dụ: 50">
+<h2>Công cụ tính lực</h2>
 
-  <label for="rod">Đường kính cần (mm):</label>
-  <input type="number" id="rod" placeholder="Ví dụ: 30">
+<label for="piston">Đường kính piston (mm):
+<span class="tooltip">?
+  <span class="tooltiptext">
+    Nhập đường kính piston (xy lanh) bằng mm. Ví dụ: 50mm.<br>
+    <strong>Chuyển đổi:</strong> mm → m: mm/1000<br>
+    <strong>Diện tích piston:</strong> A = π × (d/2)² (m²)<br>
+    <img src="https://i.imgur.com/qnJwSPK.png" alt="Mini diagram piston" />
+  </span>
+</span>
+</label>
+<input type="number" id="piston" placeholder="Ví dụ: 50">
 
-  <label for="pressure">Áp suất làm việc (bar):</label>
-  <input type="number" id="pressure" placeholder="Ví dụ: 150">
+<label for="rod">Đường kính cần (mm):
+<span class="tooltip">?
+  <span class="tooltiptext">
+    Nhập đường kính trục cần (rod) bằng mm. Ví dụ: 30mm.<br>
+    <strong>Diện tích trục:</strong> A = π × (d/2)² (m²)<br>
+    Giá trị < piston.<br>
+    <img src="https://i.imgur.com/tnzX93v.png" alt="Mini diagram rod" />
+  </span>
+</span>
+</label>
+<input type="number" id="rod" placeholder="Ví dụ: 30">
 
-  <button onclick="calculateForce()">Tính lực</button>
+<label for="pressure">Áp suất làm việc (bar):
+<span class="tooltip">?
+  <span class="tooltiptext">
+    Nhập áp suất hệ thống. Ví dụ: 150 bar.<br>
+    <strong>Chuyển đổi:</strong> 1 bar = 100000 Pa<br>
+    F = P × A (N), A tính bằng m², P bằng Pa
+  </span>
+</span>
+</label>
+<input type="number" id="pressure" placeholder="Ví dụ: 150">
 
-  <div id="result" class="result" style="display:none;"></div>
+<button onclick="calculateForce()">Tính lực</button>
 
-  <h2>Công thức tham khảo</h2>
-  <pre>
-Lực đẩy:  F<sub>đẩy</sub> = P × A_piston
-Lực kéo:  F<sub>kéo</sub>  = P × (A_piston - A_rod)
+<div id="result" class="result" style="display:none;"></div>
 
-Trong đó:
-P: Áp suất (Pa)
-A_piston: Diện tích piston (m²)
-A_rod: Diện tích trục cần (m²)
-  </pre>
+<h2>Công thức trực quan
+<span class="tooltip">?
+  <span class="tooltiptext">
+    F₍đẩy₎ = P × A₍piston₎ <br>
+    F₍kéo₎  = P × (A₍piston₎ - A₍rod₎)<br>
+    P: Pa, A: m²<br>
+    <img src="https://i.imgur.com/qnJwSPK.png" alt="Piston/Rod Diagram" />
+  </span>
+</span>
+</h2>
+<pre style="background:#f0f0f0; padding:10px; border-radius:6px;">
+Lực đẩy:  F₍đẩy₎ = P × A₍piston₎
+Lực kéo:  F₍kéo₎  = P × (A₍piston₎ - A₍rod₎)
+</pre>
 
-  <h2>Ứng dụng thực tế</h2>
-  <ul>
-    <li>Máy ép thủy lực, máy nâng hạ.</li>
-    <li>Xe ben, máy công trình.</li>
-    <li>Dây chuyền sản xuất công nghiệp.</li>
-  </ul>
+<div class="chart-container">
+<canvas id="forceChart"></canvas>
+</div>
 
-  <a class="cta" href="https://thuylucsaigon.com/lien-he/">Liên hệ tư vấn kỹ thuật</a>
+<a class="cta" href="https://thuylucsaigon.com/lien-he/">Liên hệ tư vấn kỹ thuật</a>
 </section>
 
 <footer>
-  <p>&copy; 2025 Công Ty TNHH Máy Và Thiết Bị Thủy Lực Sài Gòn | <a href="https://thuylucsaigon.com" style="color:#fff;">Website chính thức</a></p>
+<p>&copy; 2025 Công Ty TNHH Máy Và Thiết Bị Thủy Lực Sài Gòn | <a href="https://thuylucsaigon.com" style="color:#fff;">Website chính thức</a></p>
 </footer>
 
 <script>
-function calculateForce() {
-  let piston = parseFloat(document.getElementById('piston').value);
-  let rod = parseFloat(document.getElementById('rod').value);
-  let pressure = parseFloat(document.getElementById('pressure').value);
+let chart;
 
-  if (isNaN(piston) || isNaN(rod) || isNaN(pressure) || piston <= 0 || rod < 0 || pressure <= 0) {
+function calculateForce(){
+  const piston=parseFloat(document.getElementById('piston').value);
+  const rod=parseFloat(document.getElementById('rod').value);
+  const pressure=parseFloat(document.getElementById('pressure').value);
+
+  if(isNaN(piston)||isNaN(rod)||isNaN(pressure)||piston<=0||rod<0||pressure<=0){
     alert("Vui lòng nhập giá trị hợp lệ!");
     return;
   }
 
-  // Chuyển mm -> m
-  let piston_m = piston / 1000;
-  let rod_m = rod / 1000;
+  const piston_m=piston/1000;
+  const rod_m=rod/1000;
 
-  // Diện tích piston và vòng annulus
-  let area_piston = Math.PI * Math.pow(piston_m/2,2);
-  let area_annulus = area_piston - Math.PI * Math.pow(rod_m/2,2);
+  const area_piston=Math.PI*Math.pow(piston_m/2,2);
+  const area_annulus=area_piston - Math.PI*Math.pow(rod_m/2,2);
 
-  // Áp suất bar -> Pascal
-  let pressure_pa = pressure * 100000;
+  const pressure_pa=pressure*100000;
 
-  // Lực (N)
-  let force_push = area_piston * pressure_pa;
-  let force_pull = area_annulus * pressure_pa;
+  const force_push=area_piston*pressure_pa;
+  const force_pull=area_annulus*pressure_pa;
 
-  // Hiển thị kết quả
-  document.getElementById('result').style.display = "block";
-  document.getElementById('result').innerHTML = `
+  document.getElementById('result').style.display="block";
+  document.getElementById('result').innerHTML=`
     <p><strong>Lực đẩy:</strong> ${(force_push/1000).toFixed(2)} kN (~ ${(force_push/9810).toFixed(2)} tấn)</p>
     <p><strong>Lực kéo:</strong> ${(force_pull/1000).toFixed(2)} kN (~ ${(force_pull/9810).toFixed(2)} tấn)</p>
   `;
+
+  // Vẽ đồ thị lực theo piston từ 10mm → 100mm
+  const pistonRange=[];
+  const pushData=[];
+  const pullData=[];
+  for(let d=10; d<=100; d+=5){
+    const d_m=d/1000;
+    const a_p=Math.PI*Math.pow(d_m/2,2);
+    const a_r=a_p - Math.PI*Math.pow(rod_m/2,2);
+    pistonRange.push(d);
+    pushData.push(a_p*pressure_pa/1000);
+    pullData.push(a_r*pressure_pa/1000);
+  }
+
+  if(chart) chart.destroy();
+  const ctx=document.getElementById('forceChart').getContext('2d');
+  chart=new Chart(ctx,{
+    type:'line',
+    data:{labels:pistonRange,datasets:[
+      {label:'Lực đẩy (kN)', data:pushData, borderColor:'#004aad', backgroundColor:'rgba(0,74,173,0.2)', fill:true},
+      {label:'Lực kéo (kN)', data:pullData, borderColor:'#ff6600', backgroundColor:'rgba(255,102,0,0.2)', fill:true}
+    ]},
+    options:{responsive:true,plugins:{legend:{position:'top'},title:{display:true,text:'Đồ thị lực đẩy/kéo theo đường kính piston'}},scales:{x:{title:{display:true,text:'Đường kính piston (mm)'}},y:{title:{display:true,text:'Lực (kN)'}}}}
+  });
 }
 </script>
 </body>
